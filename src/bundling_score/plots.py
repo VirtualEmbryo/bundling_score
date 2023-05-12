@@ -7,15 +7,20 @@ Last updated May 12th 2023
 import numpy as np
 import matplotlib.pyplot as plt
 import bundling_score.bundling_score as bs
+from scipy.linalg import norm
 
 
 def orientation_from_q(qs):
     ''' Get orientation from nematic tensor'''
     nY, nX = qs.shape[:2]
     u = np.zeros((nX, nY, 2))
-    u[:, :, 0] = np.sqrt(qs[..., 0, 0] + 1 / 2)
-    u[:, :, 1] = np.sqrt(qs[..., 1, 1] + 1 / 2)
-    u[:, :, 1] *= np.sign(qs[..., 0, 1])
+    rr, cc = np.nonzero(norm(qs, axis=(2, 3)))
+
+    u[rr, cc, 0] = np.sqrt(qs[rr, cc, 0, 0] + 1 / 2)
+    u[rr, cc, 1] = np.sqrt(qs[rr, cc, 1, 1] + 1 / 2)
+
+    rr, cc = np.nonzero(qs[..., 0, 1])
+    u[rr, cc, 1] *= np.sign(qs[rr, cc, 0, 1])
     return u
 
 

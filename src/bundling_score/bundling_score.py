@@ -25,7 +25,7 @@ def get_gradient(image):
     x_grad = ndimage.convolve(image, kx)
     x_grad = x_grad.astype(float)
     y_grad = ndimage.convolve(image, ky)
-    y_grad.astype(float)
+    y_grad = y_grad.astype(float)
 
     grad = np.zeros((nY, nX, 2))
     grad[..., 1] = x_grad
