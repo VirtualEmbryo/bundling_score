@@ -3,6 +3,9 @@
 *.rec
 *.arec
 
+# Emacs
+*~undo_tree~
+
 # scalene
 profile.html
 profile.json
