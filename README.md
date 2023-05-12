@@ -11,7 +11,7 @@ Clone the repository
 
 Install with pip
 
-<code> python3-m pip install bundling_score</code>
+<code> python3 -m pip install bundling_score</code>
 
 
 ## Examples
