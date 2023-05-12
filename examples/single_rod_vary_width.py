@@ -27,6 +27,9 @@ ww = np.linspace(wmin, wmax, Nw, dtype='int')
 
 
 def keep_inside(n, n0, n1):
+    ''' Checks that number is in-between two others.
+
+    Useful to avoid to draw the line outside of the image.'''
     if n < n0:
         return n0
     elif n > n1:
@@ -36,6 +39,7 @@ def keep_inside(n, n0, n1):
 
 
 def draw_line(image, center, angle, length, intensity=1):
+    ''' Draw a line.'''
     oY, oX = center
     r0 = int(oY - length * np.sin(angle) / 2)
     r0 = keep_inside(r0, 0, N - 1)
@@ -50,6 +54,7 @@ def draw_line(image, center, angle, length, intensity=1):
 
 
 def create_image(width):
+    ''' Create a bundle of given width, random position and orientation.'''
     image1 = np.zeros((N, N))
     center = np.random.randint((3 * N) // 8, (5 * N) // 8, 2)
 
@@ -65,12 +70,14 @@ def create_image(width):
 
 
 def trial(it, width):
+    '''Generate image and compute score.'''
     image1 = create_image(width)
     score = bs.compute_score(image1, smax=smax)
     return score
 
 
 def compute(iw):
+    ''' Run all trials for one width.'''
     return [trial(it, ww[iw]) for it in range(trials)]
 
 
