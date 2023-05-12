@@ -4,7 +4,7 @@
 *.arec
 
 # Emacs
-*~undo_tree~
+**/*~undo-tree~
 
 # scalene
 profile.html
