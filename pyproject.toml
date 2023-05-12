@@ -37,7 +37,11 @@ classifiers = [
   #  - which license your package is available under,
 
   # The project packages requirements
-  dependencies = []
+  dependencies = [
+      "numpy",
+      "matplotlib",
+      "scikit-image>=0.19.3",
+      "scipy"]
 
   # Optional installations
   [project.optional-dependencies]
