@@ -1,18 +1,20 @@
+"""Run analysis on rods of different lengths.
+
+Can be used to create Fig.2.A of supplementary.
+
+Ghislain de Labbey
+Last updated May 12th 2023
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-from joblib import Parallel, delayed
 
 from skimage.draw import line_aa
 from skimage.filters import gaussian
 
 import bundling_score.bundling_score as bs
 import bundling_score.plots as bp
-
-from importlib import reload
-reload(bs)
-reload(bp)
-
 
 N = 152
 trials = 100
@@ -22,7 +24,7 @@ lmin, lmax, Nl = 1, 30, 30
 ll = np.linspace(lmin, lmax - 1, Nl)
 
 width1 = 1
-sigma = 2
+sigma = 1
 
 mean_corr_s = np.zeros((trials, Nl, 100))
 score = np.zeros((trials, Nl))
