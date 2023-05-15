@@ -24,6 +24,7 @@ Open Anaconda Prompt
 Install git and pip
 
 <code> conda install -c anaconda git </code>
+
 <code> conda install pip </code>
 
 Download and install the package
