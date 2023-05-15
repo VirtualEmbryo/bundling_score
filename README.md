@@ -5,13 +5,33 @@
 Small utility to extract the bundling score from actomyosin network images.
 
 ## Installation
-Clone the repository
+
+
+### With pip
+
+Download the package
 
 <code> git clone https://gitlab.college-de-france.fr/gdelabbey/bundling_score.git</code>
 
 Install with pip
 
-<code> python3 -m pip install bundling_score</code>
+<code> python3 -m pip install bundling_score/</code>
+
+### With conda
+
+Open Anaconda Prompt
+
+Install git and pip
+
+<code> conda install -c anaconda git </code>
+<code> conda install pip </code>
+
+Download and install the package
+
+<code> git clone https://gitlab.college-de-france.fr/gdelabbey/bundling_score.git </code>
+
+<code> pip install bundling_score/</code>
+
 
 
 ## Examples
