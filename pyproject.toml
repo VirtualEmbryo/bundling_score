@@ -4,7 +4,7 @@
 
 [project]
   name = "bundling_score" # you'll be able to pip install this name
-  version = "0.1.0"
+  version = "0.1.2"
   license = { file = "LICENSE" }
   # Who is an author or a maintainer ? There's no official definition.
   authors = [
@@ -41,7 +41,10 @@ classifiers = [
       "numpy",
       "matplotlib",
       "scikit-image>=0.19.3",
-      "scipy"]
+      "scipy",
+      "read_roi",
+      "pandas",
+      "scikit-learn"]
 
   # Optional installations
   [project.optional-dependencies]
@@ -143,3 +146,9 @@ classifiers = [
   skip = '*.po,*.ts,cmake/*'
   count = ''
   quiet-level = 3
+
+[tool.hatch.build.target.sdist.force-include]
+"src/main.py" = "src/bunling_score/main.py"
+
+[project.scripts]
+bundling_score = "bundling_score.main:main"

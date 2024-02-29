@@ -68,10 +68,10 @@ def compute_correlations(Qs, smax):
 
     # Sum over xx, xy, yx, yy components
     corr = np.sum(corr, axis=(0, 1))
-    return corr/np.max(corr)
+    return corr / np.max(corr)
 
 
-def compute_score(image, smax=100):
+def compute_score(image, smax=100, normalization='none'):
     ''' Compute the bundling score
 
     !!! Caution !!!
@@ -79,10 +79,24 @@ def compute_score(image, smax=100):
     spatial resolution to get um^2.'''
     image = image.astype(float)
     nY, nX = image.shape
-    if smax > min(nX, nY) // 2:
-        smax = min(nX, nY) // 2
+    if smax > min(nX, nY) // 2 - 1:
+        smax = min(nX, nY) // 2 - 1
         print("Warning: maximal s changed to " + str(smax))
 
-    _, Qs = get_nematic_tensor(image)
+    if normalization == 'intensity':
+        _, Qs = get_nematic_tensor(image)
+    elif normalization == 'none':
+        Qs, _ = get_nematic_tensor(image)
+    else:
+        print("Unknown normalization, switching to intensity")
+        Qs, _ = get_nematic_tensor(image)
     corr = compute_correlations(Qs, smax)
     return np.trapz(np.trapz(corr, axis=0)) / np.max(corr)
+
+
+def local_correlations(Qs, smax):
+    kernel = np.ones((smax, smax))
+    mean_Q = [[ndimage.convolve(Qs[..., i, j], kernel) for i in range(2)]
+              for j in range(2)]
+    corr_map = np.einsum('ijkl, klij->ij', Qs, mean_Q)
+    return corr_map

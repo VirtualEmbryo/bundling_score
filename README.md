@@ -34,6 +34,5 @@ Download and install the package
 <code> pip install bundling_score/</code>
 
 
-
 ## Examples
 Two examples are available in the **examples** directory.
