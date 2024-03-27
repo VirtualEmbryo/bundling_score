@@ -11,7 +11,7 @@ Small utility to extract the bundling score from actomyosin network images.
 2. Open a terminal (Linux/Mac), or anaconda-prompt (Windows). Make sure you are in a conda environment: (base) should appear at the left of the input line.
 3. (Optional) Create a specific virtual environment. This is useful to avoid version conflicts.
 
-<code> conda create --name bundling_score_env </code> 
+    conda create --name bundling_score_env
 
 <code> conda activate bundling_score_env </code> 
 
