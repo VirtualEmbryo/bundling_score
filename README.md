@@ -12,9 +12,10 @@ Small utility to extract the bundling score from actomyosin network images.
 3. (Optional) Create a specific virtual environment. This is useful to avoid version conflicts.
 
 ```conda create --name bundling_score_env```
+
 ```conda activate bundling_score_env```
 
-    At the left of the input line, you should now have (bundling_score_env). You should run the activate command each time you open a new terminal, in order for the module to be available.
+At the left of the input line, you should now have (bundling_score_env). You should run the activate command each time you open a new terminal, in order for the module to be available.
 4. Make sure pip is available.
 
 <code> conda install -c anaconda git </code> 
