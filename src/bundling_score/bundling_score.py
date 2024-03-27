@@ -5,7 +5,7 @@ The bundling score is in px^2, it has to be multiplied by the square of the
 spatial resolution to get um^2.
 
 Ghislain de Labbey
-Last updated May 12th 2023
+Last updated February 29th 2024
 """
 
 import numpy as np
@@ -92,11 +92,3 @@ def compute_score(image, smax=100, normalization='none'):
         Qs, _ = get_nematic_tensor(image)
     corr = compute_correlations(Qs, smax)
     return np.trapz(np.trapz(corr, axis=0)) / np.max(corr)
-
-
-def local_correlations(Qs, smax):
-    kernel = np.ones((smax, smax))
-    mean_Q = [[ndimage.convolve(Qs[..., i, j], kernel) for i in range(2)]
-              for j in range(2)]
-    corr_map = np.einsum('ijkl, klij->ij', Qs, mean_Q)
-    return corr_map

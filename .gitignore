@@ -6,6 +6,9 @@
 # Emacs
 **/*~undo-tree~
 
+# Create figures
+examples/*.py
+
 # scalene
 profile.html
 profile.json

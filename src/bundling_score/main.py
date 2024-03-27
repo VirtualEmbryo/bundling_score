@@ -1,19 +1,31 @@
 #import bundling_score.bundling_score as bs
-import sys
 import os
 import pandas as pd
+import numpy as np
 from skimage import io
-import platform
 import bundling_score.bundling_score as bs
+import matplotlib.pyplot as plt
 
 
-def open_file(path):
-    if platform.system() == "Windows":
-        os.startfile(path)
-    elif platform.system() == "Darwin":
-        subprocess.Popen(["open", path])
-    else:
-        subprocess.Popen(["xdg-open", path])
+def test_smax(timelapse, smax):
+    # The first image had a low bundling score and the last image a high score
+    windows = np.arange(1, 100, 2, dtype=int)
+    for i, image in enumerate(timelapse):
+        scores = []
+        for s in windows:
+            scores.append(bs.compute_score(image, s))
+        plt.plot(windows, scores)
+
+    plt.axvline(20, color='k', label='Default value')
+    if smax != 20:
+        plt.axvline(smax, color='tab:blue', label='Chosen value')
+    plt.xlabel('Window size (px)')
+    plt.ylabel('Bundling score (px^2)')
+    plt.legend()
+    plt.title(
+        'Make sure your value is lower than the noisy region then close the window'
+    )
+    plt.show()
 
 
 def main():
@@ -30,7 +42,7 @@ def main():
     test = False
     while not test:
         print("\nWindow size is 20px, do you want to change it?")
-        print("See notebook for more details. (y/n/value)")
+        print("See notebook for more details. (y/n/value/help)")
         answer = input()
         if answer in ['y', 'yes', 'Yes', 'YES', 'Y']:
             print("Enter window size (px)")
@@ -53,7 +65,6 @@ def main():
                 test = False
 
     ic = io.MultiImage(os.path.join(source_dir, '*.tif'), dtype=float)
-
     print(f"\n{len(ic)} files detected. Processing (this can be long...)")
 
     # Bundling scores will be stored in a DataFrame
@@ -67,7 +78,7 @@ def main():
         # Load ROI and crop
         timelapse = timelapse.astype(float)
 
-        # Single image
+        # Single imagey
         if len(timelapse.shape) == 2:
             scores = [bs.compute_score(timelapse, smax=smax)]
 
