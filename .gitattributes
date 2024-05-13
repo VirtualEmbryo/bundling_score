@@ -1,1 +1,2 @@
 *.tif filter=lfs diff=lfs merge=lfs -text
+examples/img/cortex_timelapse.tif filter=lfs diff=lfs merge=lfs -text
