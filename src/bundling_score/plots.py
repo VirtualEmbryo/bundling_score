@@ -46,15 +46,14 @@ def show_steps(image, smax=100, step=20):
     ax[0].set_title('Original')
 
     ax[1].imshow(image)
-    ax[1].quiver(X[::step, ::step],
-                 Y[::step, ::step],
-                 grad[::step, ::step, 1],
-                 grad[::step, ::step, 0],
-                 angles='xy',
-                 scale_units='xy',
-                 pivot='middle',
-                 color='xkcd:pink',
-                 width=0.01)
+    ax[1].quiver(
+        X[::step, ::step],
+        Y[::step, ::step],
+        grad[::step, ::step, 1],
+        grad[::step, ::step, 0],
+        angles='xy',
+        #                 pivot='middle',
+        color='xkcd:pink')
     ax[1].set_title('Gradient')
 
     ax[2].imshow(image)
@@ -64,7 +63,6 @@ def show_steps(image, smax=100, step=20):
                  u[::step, ::step, 0],
                  angles='xy',
                  pivot='middle',
-                 width=.01,
                  headwidth=0,
                  headlength=0,
                  headaxislength=0,
