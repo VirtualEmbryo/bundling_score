@@ -47,6 +47,10 @@ Tip: You can copy the path to a folder from the file explorer. On Windows, click
 
 ### Advanced usage
 Tutorial notebooks are available on the github repository.
+Tif files are stored with git-lfs. After cloning the repository, install
+[lfs](https://git-lfs.com/) use ```git lfs
+fetch``` to download them.
+
 1.	Use the plugin in python scripts. Have a look at the 1. Get started notebook.
 2.	Tweak correlation window. The default window size has been chosen for images of size 300 by 300px, with a certain level of noise. If your images are different, you might consider tweaking it. Have a look at the 2. Tweak correlation window size notebook.
 
